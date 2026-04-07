@@ -149,6 +149,12 @@ textarea {
   gap: 1rem;
 }
 
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
 .card,
 .table-card {
   padding: 1.4rem;
@@ -213,6 +219,35 @@ textarea {
 }
 
 .dashboard-chart__content {
+  height: 320px;
+}
+
+.reports-chart {
+  padding: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.reports-chart__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.reports-chart__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.reports-chart__header p {
+  margin: 0;
+  color: #475569;
+}
+
+.reports-chart__content {
   height: 320px;
 }
 

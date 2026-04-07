@@ -1,27 +1,48 @@
-const reports = [
-  'Resumo de vendas por período',
-  'Desempenho por categoria',
-  'Produtos com maior saída',
-];
+import { ReportsChart } from './components/ReportsChart';
+import {
+  categoryDistributionData,
+  salesOverTimeData,
+  topSellingProductsData,
+} from './mockData';
 
 export function ReportsPage() {
   return (
     <section className="page">
       <header className="page__header">
-        <span className="page__eyebrow">Inteligência</span>
-        <h1>Relatórios</h1>
-        <p>Centralize análises e indicadores estratégicos em um só lugar.</p>
+        <span className="page__eyebrow">Inteligencia</span>
+        <h1>Relatorios</h1>
+        <p>Centralize analises visuais com dados mockados para acompanhamento estrategico.</p>
       </header>
 
-      <div className="report-list">
-        {reports.map((report) => (
-          <article key={report} className="card">
-            <strong className="card__value">{report}</strong>
-            <p className="card__description">
-              Estrutura pronta para conectar gráficos, filtros e exportação.
-            </p>
-          </article>
-        ))}
+      <div className="reports-grid">
+        <ReportsChart
+          type="bar"
+          title="Produtos mais vendidos"
+          description="Comparativo dos itens com melhor desempenho no periodo."
+          data={topSellingProductsData}
+          dataKey="quantidade"
+          xAxisKey="produto"
+          color="#0f766e"
+        />
+
+        <ReportsChart
+          type="line"
+          title="Vendas ao longo do tempo"
+          description="Evolucao simulada das vendas em semanas consecutivas."
+          data={salesOverTimeData}
+          dataKey="vendas"
+          xAxisKey="periodo"
+          color="#2563eb"
+        />
+
+        <ReportsChart
+          type="pie"
+          title="Distribuicao por categoria"
+          description="Participacao percentual das categorias no catalogo atual."
+          data={categoryDistributionData}
+          dataKey="valor"
+          nameKey="categoria"
+        />
       </div>
     </section>
   );
