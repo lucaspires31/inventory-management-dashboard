@@ -124,12 +124,14 @@ textarea {
 }
 
 .page__header p,
-.card__description {
+.card__description,
+.dashboard-card__description {
   margin: 0;
   color: #475569;
 }
 
 .stats-grid,
+.dashboard-grid,
 .report-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -150,6 +152,28 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.78) 100%);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-card__label {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.dashboard-card__value {
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  color: #0f172a;
 }
 
 .card__label {
