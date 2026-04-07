@@ -239,6 +239,15 @@ textarea {
   color: #64748b;
 }
 
+.table tbody tr:hover {
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.table__primary-cell {
+  font-weight: 600;
+  color: #0f172a;
+}
+
 @media (max-width: 900px) {
   .app-shell {
     grid-template-columns: 1fr;
