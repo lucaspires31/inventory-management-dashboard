@@ -7,9 +7,21 @@ import { productsList } from './mockData';
 export function ProductsPage() {
   const [products, setProducts] = useState(productsList);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
   function handleAddProduct(newProduct) {
     setProducts((currentProducts) => [...currentProducts, newProduct]);
+    setEditingProduct(null);
+    setIsFormVisible(false);
+  }
+
+  function handleUpdateProduct(updatedProduct, originalCode) {
+    setProducts((currentProducts) =>
+      currentProducts.map((product) =>
+        product.code === originalCode ? updatedProduct : product,
+      ),
+    );
+    setEditingProduct(null);
     setIsFormVisible(false);
   }
 
@@ -17,10 +29,37 @@ export function ProductsPage() {
     setProducts((currentProducts) =>
       currentProducts.filter((product) => product.code !== productCode),
     );
+    if (editingProduct?.code === productCode) {
+      setEditingProduct(null);
+      setIsFormVisible(false);
+    }
   }
 
   function handleEditProduct(productCode) {
-    console.info(`Editar produto: ${productCode}`);
+    const productToEdit = products.find((product) => product.code === productCode);
+
+    if (!productToEdit) {
+      return;
+    }
+
+    setEditingProduct(productToEdit);
+    setIsFormVisible(true);
+  }
+
+  function handleToggleForm() {
+    if (isFormVisible) {
+      setEditingProduct(null);
+      setIsFormVisible(false);
+      return;
+    }
+
+    setEditingProduct(null);
+    setIsFormVisible(true);
+  }
+
+  function handleCancelForm() {
+    setEditingProduct(null);
+    setIsFormVisible(false);
   }
 
   return (
@@ -35,14 +74,19 @@ export function ProductsPage() {
         <button
           type="button"
           className="primary-button"
-          onClick={() => setIsFormVisible((currentValue) => !currentValue)}
+          onClick={handleToggleForm}
         >
-          {isFormVisible ? 'Fechar formulario' : 'Novo Produto'}
+          {isFormVisible && !editingProduct ? 'Fechar formulario' : 'Novo Produto'}
         </button>
       </div>
 
       {isFormVisible ? (
-        <NewProductForm onSubmitProduct={handleAddProduct} />
+        <NewProductForm
+          initialProduct={editingProduct}
+          onAddProduct={handleAddProduct}
+          onUpdateProduct={handleUpdateProduct}
+          onCancel={handleCancelForm}
+        />
       ) : null}
 
       <ProductsTable

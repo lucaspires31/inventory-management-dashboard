@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const initialFormValues = {
   name: '',
@@ -7,8 +7,27 @@ const initialFormValues = {
   price: '',
 };
 
-export function NewProductForm({ onSubmitProduct }) {
+export function NewProductForm({
+  initialProduct,
+  onAddProduct,
+  onUpdateProduct,
+  onCancel,
+}) {
   const [formValues, setFormValues] = useState(initialFormValues);
+
+  useEffect(() => {
+    if (initialProduct) {
+      setFormValues({
+        name: initialProduct.name,
+        code: initialProduct.code,
+        quantity: String(initialProduct.quantity),
+        price: initialProduct.price,
+      });
+      return;
+    }
+
+    setFormValues(initialFormValues);
+  }, [initialProduct]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -22,12 +41,19 @@ export function NewProductForm({ onSubmitProduct }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    onSubmitProduct({
+    const normalizedProduct = {
       name: formValues.name.trim(),
       code: formValues.code.trim(),
       quantity: Number(formValues.quantity),
       price: formValues.price.trim(),
-    });
+    };
+
+    if (initialProduct) {
+      onUpdateProduct(normalizedProduct, initialProduct.code);
+      return;
+    }
+
+    onAddProduct(normalizedProduct);
 
     setFormValues(initialFormValues);
   }
@@ -35,8 +61,12 @@ export function NewProductForm({ onSubmitProduct }) {
   return (
     <section className="form-card">
       <header className="form-card__header">
-        <h2>Novo produto</h2>
-        <p>Preencha os campos abaixo para adicionar um item na lista local.</p>
+        <h2>{initialProduct ? 'Editar produto' : 'Novo produto'}</h2>
+        <p>
+          {initialProduct
+            ? 'Atualize os dados abaixo e salve as alteracoes no estado local.'
+            : 'Preencha os campos abaixo para adicionar um item na lista local.'}
+        </p>
       </header>
 
       <form className="product-form" onSubmit={handleSubmit}>
@@ -90,8 +120,16 @@ export function NewProductForm({ onSubmitProduct }) {
         </label>
 
         <div className="form-actions">
+          <button
+            type="button"
+            className="secondary-button"
+            onClick={onCancel}
+          >
+            Cancelar
+          </button>
+
           <button type="submit" className="primary-button">
-            Adicionar produto
+            {initialProduct ? 'Salvar alteracoes' : 'Adicionar produto'}
           </button>
         </div>
       </form>
