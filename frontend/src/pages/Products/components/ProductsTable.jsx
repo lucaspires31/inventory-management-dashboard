@@ -1,4 +1,6 @@
-export function ProductsTable({ products }) {
+import { ProductsTableActions } from './ProductsTableActions';
+
+export function ProductsTable({ products, onDeleteProduct, onEditProduct }) {
   return (
     <div className="table-card">
       <table className="table">
@@ -8,6 +10,7 @@ export function ProductsTable({ products }) {
             <th>Codigo</th>
             <th>Quantidade</th>
             <th>Preco</th>
+            <th>Acoes</th>
           </tr>
         </thead>
         <tbody>
@@ -17,6 +20,13 @@ export function ProductsTable({ products }) {
               <td>{product.code}</td>
               <td>{product.quantity}</td>
               <td>{product.price}</td>
+              <td>
+                <ProductsTableActions
+                  productCode={product.code}
+                  onDeleteProduct={onDeleteProduct}
+                  onEditProduct={onEditProduct}
+                />
+              </td>
             </tr>
           ))}
         </tbody>
