@@ -75,21 +75,37 @@ textarea {
 }
 
 .sidebar__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
   padding: 0.9rem 1rem;
   border-radius: 14px;
   color: #cbd5e1;
-  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  border: 1px solid transparent;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.sidebar__link-label {
+  font-weight: 600;
 }
 
 .sidebar__link:hover {
   background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.2);
   color: #f8fafc;
   transform: translateX(4px);
 }
 
 .sidebar__link--active {
   color: #f8fafc;
-  background: rgba(56, 189, 248, 0.2);
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: inset 3px 0 0 #38bdf8;
 }
 
 .app-content {

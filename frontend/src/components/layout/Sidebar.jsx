@@ -1,10 +1,5 @@
-import { NavLink } from 'react-router-dom';
-
-const navigationItems = [
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/produtos', label: 'Produtos' },
-  { to: '/relatorios', label: 'Relatórios' },
-];
+import { sidebarNavigation } from './sidebarNavigation';
+import { SidebarNavItem } from './SidebarNavItem';
 
 export function Sidebar() {
   return (
@@ -14,17 +9,9 @@ export function Sidebar() {
         <strong>Painel Admin</strong>
       </div>
 
-      <nav className="sidebar__nav" aria-label="Navegação principal">
-        {navigationItems.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            className={({ isActive }) =>
-              isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link'
-            }
-          >
-            {item.label}
-          </NavLink>
+      <nav className="sidebar__nav" aria-label="Navegacao principal">
+        {sidebarNavigation.map((item) => (
+          <SidebarNavItem key={item.to} to={item.to} label={item.label} />
         ))}
       </nav>
     </aside>
