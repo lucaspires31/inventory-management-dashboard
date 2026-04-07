@@ -138,6 +138,12 @@ textarea {
   gap: 1rem;
 }
 
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
 .card,
 .table-card {
   padding: 1.4rem;
@@ -174,6 +180,35 @@ textarea {
 .dashboard-card__value {
   font-size: clamp(1.4rem, 2vw, 1.85rem);
   color: #0f172a;
+}
+
+.dashboard-chart {
+  padding: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-chart__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-chart__header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.dashboard-chart__header p {
+  margin: 0;
+  color: #475569;
+}
+
+.dashboard-chart__content {
+  height: 320px;
 }
 
 .card__label {

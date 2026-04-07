@@ -1,5 +1,10 @@
 import { DashboardCard } from './components/DashboardCard';
-import { dashboardMetrics } from './mockData';
+import { DashboardChart } from './components/DashboardChart';
+import {
+  dashboardMetrics,
+  productQuantityData,
+  salesOverTimeData,
+} from './mockData';
 
 export function DashboardPage() {
   return (
@@ -19,6 +24,28 @@ export function DashboardPage() {
             description={metric.description}
           />
         ))}
+      </div>
+
+      <div className="dashboard-charts">
+        <DashboardChart
+          type="bar"
+          title="Produtos e quantidades"
+          description="Distribuicao mockada dos itens com maior relevancia no estoque."
+          data={productQuantityData}
+          dataKey="quantidade"
+          xAxisKey="produto"
+          color="#0f766e"
+        />
+
+        <DashboardChart
+          type="line"
+          title="Vendas ao longo do tempo"
+          description="Evolucao simulada das vendas nas ultimas semanas."
+          data={salesOverTimeData}
+          dataKey="vendas"
+          xAxisKey="periodo"
+          color="#2563eb"
+        />
       </div>
     </section>
   );

@@ -20,3 +20,20 @@ export const dashboardMetrics = [
     description: 'Item com menor giro recente no estoque.',
   },
 ];
+
+export const productQuantityData = [
+  { produto: 'Notebook Pro 14', quantidade: 32 },
+  { produto: 'Cadeira Ergo Flex', quantidade: 18 },
+  { produto: 'Headset Studio X', quantidade: 46 },
+  { produto: 'Monitor UltraView', quantidade: 27 },
+  { produto: 'Teclado Compact', quantidade: 38 },
+];
+
+export const salesOverTimeData = [
+  { periodo: 'Sem 1', vendas: 24 },
+  { periodo: 'Sem 2', vendas: 31 },
+  { periodo: 'Sem 3', vendas: 28 },
+  { periodo: 'Sem 4', vendas: 42 },
+  { periodo: 'Sem 5', vendas: 39 },
+  { periodo: 'Sem 6', vendas: 47 },
+];
