@@ -8,19 +8,19 @@ export function ProductsTable({ products, onDeleteProduct, onEditProduct }) {
           <tr>
             <th>Nome</th>
             <th>Codigo</th>
-            <th>Quantidade</th>
-            <th>Preco</th>
-            <th>Acoes</th>
+            <th className="table__numeric-head">Quantidade</th>
+            <th className="table__numeric-head">Preco</th>
+            <th className="table__actions-head">Acoes</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr key={product.code}>
               <td className="table__primary-cell">{product.name}</td>
-              <td>{product.code}</td>
-              <td>{product.quantity}</td>
-              <td>{product.price}</td>
-              <td>
+              <td className="table__code-cell">{product.code}</td>
+              <td className="table__numeric-cell">{product.quantity}</td>
+              <td className="table__numeric-cell table__price-cell">{product.price}</td>
+              <td className="table__actions-cell">
                 <ProductsTableActions
                   productCode={product.code}
                   onDeleteProduct={onDeleteProduct}

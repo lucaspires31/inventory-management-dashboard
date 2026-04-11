@@ -22,6 +22,8 @@ export function DashboardPage() {
             title={metric.title}
             value={metric.value}
             description={metric.description}
+            tone={metric.tone}
+            icon={metric.icon}
           />
         ))}
       </div>

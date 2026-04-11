@@ -8,6 +8,7 @@ export function SidebarNavItem({ to, label }) {
         isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link'
       }
     >
+      <span className="sidebar__link-indicator" aria-hidden="true" />
       <span className="sidebar__link-label">{label}</span>
     </NavLink>
   );
